@@ -1,0 +1,31 @@
+table "employees"."departments" {
+  columns = (
+    column "dept_no" {
+      type = char(4)
+      null = NOT NULL
+    }
+    column "dept_name" {
+      type = varchar(40)
+      null = NOT NULL
+    }
+  )
+  primaryKey = {
+    columns = [
+      dept_no
+    ]
+    name = "PRIMARY"
+    objectType = primaryKey
+  }
+}
+
+index "employees"."departments"."dept_name" {
+  columns = <
+    {
+      name = dept_name
+    }
+
+  >
+  type = BTREE
+  unique = UNIQUE
+}
+

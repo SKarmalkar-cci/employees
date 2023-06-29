@@ -1,0 +1,40 @@
+table "employees"."salaries" {
+  columns = (
+    column "emp_no" {
+      type = int
+      null = NOT NULL
+    }
+    column "salary" {
+      type = int
+      null = NOT NULL
+    }
+    column "from_date" {
+      type = date
+      null = NOT NULL
+    }
+    column "to_date" {
+      type = date
+      null = NOT NULL
+    }
+  )
+  primaryKey = {
+    columns = [
+      emp_no
+      from_date
+    ]
+    name = "PRIMARY"
+    objectType = primaryKey
+  }
+}
+
+foreignKey "employees"."salaries"."salaries_ibfk_1" {
+  columns = [
+    "emp_no"
+  ]
+  referencedTable = "employees"."employees"
+  referencedColumns = [
+    "emp_no"
+  ]
+  onDelete = CASCADE
+}
+

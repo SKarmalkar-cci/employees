@@ -9,7 +9,15 @@
   "deployment": {
     "flywayConfFiles": [
       "./flyway.conf"
-    ]
+    ],
+    "shadowDatabase": {
+      "connectionProvider": {
+        "type": "UsernamePassword",
+        "url": "jdbc:mysql://localhost:3307"
+      },
+      "schema": "employees_shadow",
+      "displayName": "Shadow database"
+    }
   },
   "developmentDatabase": {
     "connectionProvider": {
