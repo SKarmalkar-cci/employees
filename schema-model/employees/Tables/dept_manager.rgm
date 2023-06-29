@@ -1,0 +1,61 @@
+table "employees"."dept_manager" {
+  columns = (
+    column "emp_no" {
+      type = int
+      null = NOT NULL
+    }
+    column "dept_no" {
+      type = char(4)
+      null = NOT NULL
+    }
+    column "from_date" {
+      type = date
+      null = NOT NULL
+    }
+    column "to_date" {
+      type = date
+      null = NOT NULL
+    }
+  )
+  primaryKey = {
+    columns = [
+      emp_no
+      dept_no
+    ]
+    name = "PRIMARY"
+    objectType = primaryKey
+  }
+}
+
+foreignKey "employees"."dept_manager"."dept_manager_ibfk_1" {
+  columns = [
+    "emp_no"
+  ]
+  referencedTable = "employees"."employees"
+  referencedColumns = [
+    "emp_no"
+  ]
+  onDelete = CASCADE
+}
+
+foreignKey "employees"."dept_manager"."dept_manager_ibfk_2" {
+  columns = [
+    "dept_no"
+  ]
+  referencedTable = "employees"."departments"
+  referencedColumns = [
+    "dept_no"
+  ]
+  onDelete = CASCADE
+}
+
+index "employees"."dept_manager"."dept_no" {
+  columns = <
+    {
+      name = dept_no
+    }
+
+  >
+  type = BTREE
+}
+

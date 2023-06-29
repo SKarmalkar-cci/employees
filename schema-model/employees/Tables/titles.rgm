@@ -1,0 +1,40 @@
+table "employees"."titles" {
+  columns = (
+    column "emp_no" {
+      type = int
+      null = NOT NULL
+    }
+    column "title" {
+      type = varchar(50)
+      null = NOT NULL
+    }
+    column "from_date" {
+      type = date
+      null = NOT NULL
+    }
+    column "to_date" {
+      type = date
+    }
+  )
+  primaryKey = {
+    columns = [
+      emp_no
+      title
+      from_date
+    ]
+    name = "PRIMARY"
+    objectType = primaryKey
+  }
+}
+
+foreignKey "employees"."titles"."titles_ibfk_1" {
+  columns = [
+    "emp_no"
+  ]
+  referencedTable = "employees"."employees"
+  referencedColumns = [
+    "emp_no"
+  ]
+  onDelete = CASCADE
+}
+
